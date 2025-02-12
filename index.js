@@ -11,7 +11,7 @@ import { MongoClient } from "mongodb";
 
 const app = express();
 
-const PORT = 4000;
+const PORT = process.env.PORT;  //-> Auto assignable PORT
 
 const MONGO_URL = "mongodb://127.0.0.1";  //-->Local mongo connect
 // const MONGO_URL = process.env.MONGO_URL  //-->Mongo server connect
