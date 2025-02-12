@@ -13,8 +13,8 @@ const app = express();
 
 const PORT = process.env.PORT;  //-> Auto assignable PORT
 
-const MONGO_URL = "mongodb://127.0.0.1";  //-->Local mongo connect
-// const MONGO_URL = process.env.MONGO_URL  //-->Mongo server connect
+// const MONGO_URL = "mongodb://127.0.0.1";  //-->Local mongo connect
+const MONGO_URL = process.env.MONGO_URL  //-->Mongo server connect
 const client = new MongoClient(MONGO_URL); // dial
 // Top level await
 await client.connect(); // call
