@@ -101,6 +101,8 @@ router.get("/", async function (request, response) {
     response.send(movies);
   
   });
+
+  
   //----Try catch method :
   
   // app.get("/movies", async function (request, response) {
@@ -138,6 +140,17 @@ router.get("/", async function (request, response) {
     response.send(result);
   
   });
+
+  router.put("/:id", async function (request, response) {
+    const { id } = request.params;
+    console.log(id);
+  
+    const movie = await client.db("movies").collection("movies").updateOne({ id: id },{$set : {}})
+    // console.log(movie);
+  
+    movie ? response.send(movie) : response.status(404).send({ message: 'No data' });
+  });
+  
   
   router.delete("/:id", async function (request, response) {
     const { id } = request.params;
