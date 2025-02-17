@@ -1,6 +1,6 @@
 import express from "express";
 import { client } from "../index.js";
-
+import { auth } from "../middleware/auth.js";
 const router = express.Router();
 
 
@@ -95,7 +95,7 @@ const router = express.Router();
 //     }
 //   ]
 
-router.get("/", async function (request, response) {
+router.get("/", auth , async function (request, response) {
     const movies = await client.db("movies").collection("movies").find({}).toArray();
     // console.log(movies);
     response.send(movies);
@@ -141,14 +141,16 @@ router.get("/", async function (request, response) {
   
   });
 
-  router.put("/:id", async function (request, response) {
+  router.put("/:id",express.json(), async function (request, response) {
     const { id } = request.params;
+    const data = request.body;
+    console.log(data);
     console.log(id);
   
-    const movie = await client.db("movies").collection("movies").updateOne({ id: id },{$set : {}})
+    const result = await client.db("movies").collection("movies").updateOne({ id:id },{ $set:data })
     // console.log(movie);
   
-    movie ? response.send(movie) : response.status(404).send({ message: 'No data' });
+    result ? response.send(result) : response.status(404).send({ message: 'No data' });
   });
   
   

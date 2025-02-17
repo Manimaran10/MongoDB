@@ -6,7 +6,9 @@ import { MongoClient } from "mongodb";
 import cors from "cors";
 // const express = require("express");
 import movieRouter from "./router/movie.router.js";
-import directorRouter from "./router/director.router.js"
+import usersRouter from "./router/users.router.js";
+import directorRouter from "./router/director.router.js";
+
 
 // console.log(process.env.MONGO_URL);
 
@@ -33,6 +35,9 @@ app.use(cors()); //-> to allow data to all origins
 
 app.use("/movies", movieRouter)
 app.use("/directors", directorRouter)
+app.use("/users", usersRouter)
+
 
 app.listen(PORT, () => console.log(`The server started in: ${PORT} ✨✨`));
+
 
