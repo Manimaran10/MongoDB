@@ -31,7 +31,11 @@ app.get("/", function (request, response) {
 });
 
 //cors -> 3rd party middleware
-app.use(cors()); //-> to allow data to all origins
+app.use(cors({
+  origin: "https://maran-moviedashboard-app.netlify.app", // ✅ your frontend domain
+  credentials: true  // ✅ only if you're sending cookies or auth headers
+}));
+ //-> to allow data to all origins
 
 app.use("/movies", movieRouter)
 app.use("/directors", directorRouter)
