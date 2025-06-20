@@ -8,7 +8,7 @@ import cors from "cors";
 import movieRouter from "./router/movie.router.js";
 import usersRouter from "./router/users.router.js";
 import directorRouter from "./router/director.router.js";
-
+import serverless from "serverless-http";
 
 // console.log(process.env.MONGO_URL);
 
@@ -32,8 +32,8 @@ app.get("/", function (request, response) {
 
 //cors -> 3rd party middleware
 app.use(cors({
-  origin: "https://maran-moviedashboard-app.netlify.app", // ✅ your frontend domain
-  credentials: true  // ✅ only if you're sending cookies or auth headers
+  origin: "https://maran-moviedashboard-app.netlify.app", // frontend domain
+  credentials: true 
 }));
  //-> to allow data to all origins
 
@@ -42,6 +42,6 @@ app.use("/directors", directorRouter)
 app.use("/users", usersRouter)
 
 
-app.listen(PORT, () => console.log(`The server started in: ${PORT} ✨✨`));
+export default serverless(app);
 
 
